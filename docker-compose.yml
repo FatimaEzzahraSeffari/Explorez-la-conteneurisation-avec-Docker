@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  web:
+    build: .  # Build the Docker image from the current directory's Dockerfile
+    ports:
+      - "4000:3000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fati
+      MYSQL_USER: fati
+      MYSQL_PASSWORD: fati
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_USER: fati
+      PMA_PASSWORD: fati
+    ports:
+      - "8081:80"
+
+  nodejs:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

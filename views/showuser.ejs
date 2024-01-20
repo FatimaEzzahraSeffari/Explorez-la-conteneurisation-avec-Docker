@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #b30909;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #131212;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Table</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="color:white">ID</th>
+        <th style="color:white">Username</th>
+        <th style="color:white">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const user of users) { %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+         
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>
